@@ -38,10 +38,18 @@ class Main:
 
     @staticmethod
     def get_response(curr_word):
-        index = int(input("enter index: "))
-        while not curr_word.check_index_valid(index):
-            index = int(input("enter index: "))
-        letter = input("enter letter: ")
+        while True:
+            try:
+                index = int(input("Enter index: "))
+                if curr_word.check_index_valid(index):
+                    break
+                else:
+                    print("Please enter a valid index")
+                    print(curr_word.covered_word)
+            except ValueError:
+                print("Please enter a valid index")
+                print(curr_word.covered_word)
+        letter = input("Enter letter: ")
         return index, letter
 
     def build_word_list(self):
