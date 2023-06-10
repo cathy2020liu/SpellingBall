@@ -9,6 +9,13 @@ class Word:
         self.word = input_word
         self.covered_word = input_word
 
+    def get_num_question(self) -> int:
+        num_question = 0
+        for char in self.covered_word:
+            if char == "?":
+                num_question += 1
+        return num_question
+
     def cover_word(self):
         largest_index = len(self.word) - 1
         temp = list(self.covered_word)
@@ -23,6 +30,10 @@ class Word:
         else:
             return True
 
-    def check_index_correct(self, index, char) -> bool:
-        return self.word[index] == char
+    def check_index_correct(self, index, letter) -> bool:
+        return self.word[index] == letter
 
+    def update_after_correct_answer(self, index, letter):
+        temp = list(self.covered_word)
+        temp[index] = letter
+        self.covered_word = "".join(temp)
